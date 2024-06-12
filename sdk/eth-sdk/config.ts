@@ -83,6 +83,7 @@ export const contracts = {
     curve: {
       regularPool: "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       metaPool: "0x4f062658eaaf2c1ccf8c8e36d6824cdf41167956",
+      stableNGPool: "0x02950460e2b9529d0e00284a5fa2d7bdf3fa4d72",
     },
     lido: {
       steth: "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
@@ -143,6 +144,11 @@ export const contractAddressOverrides = {
       booster: "0x98Ef32edd24e2c92525E59afc4475C1242a30184",
       reward_pool_deposit_wrapper: "0x0Fec3d212BcC29eF3E505B555D7a7343DF0B7F76",
     },
+  },
+  matic: {
+    weth: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+    usdc: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
+    dai: "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
   },
 }
 

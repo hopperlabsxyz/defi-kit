@@ -4,6 +4,7 @@ import { Permission } from "zodiac-roles-sdk"
 export enum Chain {
   eth = "eth",
   gno = "gno",
+  matic = "matic",
 }
 
 export type ActionFunction = (options: any) => Promise<Permission[]>
@@ -22,6 +23,8 @@ export type ProtocolActions = {
   lock?: ActionFunction
 
   delegate?: ActionFunction
+
+  addLiquidity?: ActionFunction
 }
 
 export type ActionName = keyof ProtocolActions

@@ -5081,7 +5081,7 @@ __metadata:
     typescript: ^5.3.3
     wait-on: ^7.0.1
     zod: ^3.22.2
-    zodiac-roles-sdk: ^2.9.0
+    zodiac-roles-sdk: ^2.12.5
   languageName: unknown
   linkType: soft
 
@@ -13777,6 +13777,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"zodiac-roles-deployments@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "zodiac-roles-deployments@npm:2.2.2"
+  checksum: fb6ef09fc99350f38bb2e4a485d05ded0d7109e99d77f7020a1e81ede1be5c73f22ba2879e00276862070005a8c8d5f3770731ced192dee2b2219b5d44a73fe9
+  languageName: node
+  linkType: hard
+
+"zodiac-roles-sdk@npm:^2.12.5":
+  version: 2.12.5
+  resolution: "zodiac-roles-sdk@npm:2.12.5"
+  dependencies:
+    ethers: ^5.7.2
+    zodiac-roles-deployments: ^2.2.2
+  peerDependencies:
+    "@dethcrypto/eth-sdk-client": ^0.1.6
+  peerDependenciesMeta:
+    "@dethcrypto/eth-sdk-client":
+      optional: true
+  checksum: 76452b86d533ac9c1e7e58218d9da559d95e586f7d4e911c78ad67ab33e0a25e3125b194a162acc646ebe0ba8d9c6fec1bcd2141a04482fcdfd931bbbf68ffc7
+  languageName: node
+  linkType: hard
+
 "zodiac-roles-sdk@npm:^2.2.12":
   version: 2.2.12
   resolution: "zodiac-roles-sdk@npm:2.2.12"
@@ -13790,21 +13812,6 @@ __metadata:
     "@dethcrypto/eth-sdk-client":
       optional: true
   checksum: 9477a4a8d8e73645d8bad13ff813a5cc832154a481d474bc07cddeb60d37d1069a091ae0ff46e2208e9026600b3d77e307298db5a5183e361672bd0ed9945950
-  languageName: node
-  linkType: hard
-
-"zodiac-roles-sdk@npm:^2.9.0":
-  version: 2.9.0
-  resolution: "zodiac-roles-sdk@npm:2.9.0"
-  dependencies:
-    ethers: ^5.7.2
-    zod: ^3.22.1
-  peerDependencies:
-    "@dethcrypto/eth-sdk-client": ^0.1.6
-  peerDependenciesMeta:
-    "@dethcrypto/eth-sdk-client":
-      optional: true
-  checksum: 9def9e2067c215316e296aed7baef21a13e9fe7b0c07c90245b4cb5dc7794a686c8e8dbd5c16749dba3192cfd3b2a9200005d48792cfb27853bf2217b4ec6cb6
   languageName: node
   linkType: hard
 
