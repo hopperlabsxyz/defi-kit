@@ -1,10 +1,11 @@
 import { allow } from "zodiac-roles-sdk/kit"
 import { c } from "zodiac-roles-sdk"
-import { Token } from "./types"
+import { TokenEthereum } from "./types"
+import { TokensArbitrum } from "./types"
 import { allowErc20Approve } from "../../../conditions"
 import { contracts } from "../../../../eth-sdk/config"
 
-export const depositToken = (token: Token) => {
+export const depositToken = (token: TokenEthereum | TokensArbitrum) => {
   return [
     ...allowErc20Approve(
       [token.token],
@@ -47,7 +48,7 @@ export const depositEther = () => [
   ),
 ]
 
-export const borrowToken = (token: Token) => {
+export const borrowToken = (token: TokenEthereum | TokensArbitrum) => {
   return [
     ...allowErc20Approve(
       [token.token],

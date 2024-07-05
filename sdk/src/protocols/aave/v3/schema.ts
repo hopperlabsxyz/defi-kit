@@ -1,12 +1,8 @@
 import { z } from "zod"
-import ethTokens from "./_info"
+import ethTokens from "./_info_ethereum"
+import arb1Tokens from "./_info_arbitrum"
 import ethStakeTokens from "../v2/stakeTokens"
 import ethDelegateTokens from "../v2/delegateTokens"
-import {
-  arb1Tokens,
-  arb1StakeTokens,
-  arb1DelegateTokens,
-} from "./arb1Tokens_tempfile"
 import { zx } from "../../../zx"
 
 const zEthToken = z.enum([
@@ -52,16 +48,6 @@ const zArb1Token = z.enum([
   ...arb1Tokens.map((token) => token.token),
 ] as [string, string, ...string[]])
 
-const zArb1StakeToken = z.enum([
-  ...arb1StakeTokens.map((token) => token.symbol),
-  ...arb1StakeTokens.map((token) => token.address),
-] as [string, string, ...string[]])
-
-const zArb1DelegateToken = z.enum([
-  ...arb1DelegateTokens.map((token) => token.symbol),
-  ...arb1DelegateTokens.map((token) => token.address),
-] as [string, string, ...string[]])
-
 export const arb1 = {
   deposit: z.object({
     targets: zArb1Token.array(),
@@ -69,14 +55,5 @@ export const arb1 = {
 
   borrow: z.object({
     targets: zArb1Token.array(),
-  }),
-
-  stake: z.object({
-    targets: zArb1StakeToken.array(),
-  }),
-
-  delegate: z.object({
-    targets: zArb1DelegateToken.array(),
-    delegatee: zDelegatee,
   }),
 }
