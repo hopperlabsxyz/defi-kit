@@ -24,6 +24,11 @@
       "require": "./dist/matic.js",
       "import": "./dist/matic.mjs",
       "types": "./dist/matic.d.ts"
+    },
+    "./arb1": {
+      "require": "./dist/arb1.js",
+      "import": "./dist/arb1.mjs",
+      "types": "./dist/arb1.d.ts"
     }
   },
   "typesVersions": {
@@ -39,6 +44,9 @@
       ],
       "matic": [
         "./dist/matic.d.ts"
+      ],
+      "arb1": [
+        "./dist/arb1.d.ts"
       ]
     }
   },

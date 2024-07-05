@@ -46,3 +46,7 @@ export const gno = {
 export const matic = {
   curve: curve.matic,
 } satisfies Record<string, ProtocolSchemas>
+
+export const arb1 = {
+  aave_v3: aave_v3.arb1,
+} satisfies Record<string, ProtocolSchemas>

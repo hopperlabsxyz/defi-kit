@@ -5,6 +5,7 @@ export enum Chain {
   eth = "eth",
   gno = "gno",
   matic = "matic",
+  arb1 = "arb1",
 }
 
 export type ActionFunction = (options: any) => Promise<Permission[]>

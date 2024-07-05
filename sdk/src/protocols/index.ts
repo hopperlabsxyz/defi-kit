@@ -56,3 +56,10 @@ export const matic = annotateAll(
   },
   "matic"
 )
+
+export const arb1 = annotateAll(
+  {
+    aave_v3: aave_v3.eth,
+  },
+  "arb1"
+)

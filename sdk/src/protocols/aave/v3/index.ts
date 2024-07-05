@@ -60,3 +60,45 @@ export const eth = {
     )
   },
 }
+
+export const arb1 = {
+  deposit: async ({
+    targets,
+  }: {
+    targets: ("ETH" | Token["symbol"] | Token["token"])[]
+  }) => {
+    return targets.flatMap((target) =>
+      target === "ETH" ? depositEther() : depositToken(findToken(target))
+    )
+  },
+
+  borrow: async ({
+    targets,
+  }: {
+    targets: ("ETH" | Token["symbol"] | Token["token"])[]
+  }) => {
+    return targets.flatMap((target) =>
+      target === "ETH" ? borrowEther() : borrowToken(findToken(target))
+    )
+  },
+
+  stake: async ({
+    targets,
+  }: {
+    targets: (StakeToken["address"] | StakeToken["symbol"])[]
+  }) => {
+    return targets.flatMap((token) => stake(findStakeToken(token)))
+  },
+
+  delegate: async ({
+    targets,
+    delegatee,
+  }: {
+    targets: (DelegateToken["address"] | DelegateToken["symbol"])[]
+    delegatee: string
+  }) => {
+    return targets.flatMap((target) =>
+      delegate(findDelegateToken(target), delegatee)
+    )
+  },
+}
