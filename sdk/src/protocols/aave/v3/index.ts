@@ -6,6 +6,7 @@ import { DelegateToken, StakeToken } from "../v2/types"
 import { findDelegateToken, findStakeToken } from "../v2/index"
 import { depositEther, depositToken, borrowEther, borrowToken } from "./actions"
 import { stake, delegate } from "../v2/actions"
+import { Chain } from "../../../types"
 
 const findTokenArbitrum = (symbolOrAddress: string): TokensArbitrum => {
   const symbolOrAddressLower = symbolOrAddress.toLowerCase()
@@ -43,8 +44,8 @@ export const eth = {
   }) => {
     return targets.flatMap((target) =>
       target === "ETH"
-        ? depositEther()
-        : depositToken(findTokenEthereum(target))
+        ? depositEther(Chain.eth)
+        : depositToken(findTokenEthereum(target), Chain.eth)
     )
   },
 
@@ -54,7 +55,9 @@ export const eth = {
     targets: ("ETH" | TokenEthereum["symbol"] | TokenEthereum["token"])[]
   }) => {
     return targets.flatMap((target) =>
-      target === "ETH" ? borrowEther() : borrowToken(findTokenEthereum(target))
+      target === "ETH"
+        ? borrowEther(Chain.eth)
+        : borrowToken(findTokenEthereum(target), Chain.eth)
     )
   },
 
@@ -87,8 +90,8 @@ export const arb1 = {
   }) => {
     return targets.flatMap((target) =>
       target === "ETH"
-        ? depositEther()
-        : depositToken(findTokenArbitrum(target))
+        ? depositEther(Chain.arb1)
+        : depositToken(findTokenArbitrum(target), Chain.arb1)
     )
   },
 
@@ -98,7 +101,9 @@ export const arb1 = {
     targets: ("ETH" | TokensArbitrum["symbol"] | TokensArbitrum["token"])[]
   }) => {
     return targets.flatMap((target) =>
-      target === "ETH" ? borrowEther() : borrowToken(findTokenArbitrum(target))
+      target === "ETH"
+        ? borrowEther(Chain.arb1)
+        : borrowToken(findTokenArbitrum(target), Chain.arb1)
     )
   },
 }

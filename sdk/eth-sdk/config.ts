@@ -150,7 +150,17 @@ export const contractAddressOverrides = {
     usdc: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
     dai: "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
   },
-}
+  arbitrumOne: {
+    aaveV3: {
+      aaveLendingPoolV3: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+      wrappedTokenGatewayV3: "0xecD4bd3121F9FD604ffaC631bF6d41ec12f1fafb",
+      aArbWETH: "0x4d5F47FA6A74757f35C14fD3a6Ef8E3C9BC514E8",
+      variableDebtWETH: "0xeA51d7853EEFb32b6ee06b1C12E6dcCA88Be0fFE",
+      stableDebtWETH: "0x102633152313C81cD80419b6EcF66d14Ad68949A",
+    },
+    weth: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+  },
+} as const satisfies EthSdkConfig["contracts"]
 
 export default defineConfig({
   contracts,
