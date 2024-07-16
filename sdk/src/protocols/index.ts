@@ -14,6 +14,7 @@ import * as spark from "./spark"
 import * as stader from "./stader"
 import * as stakewise_v2 from "./stakewise/v2"
 import * as uniswap_v3 from "./uniswap/v3"
+import * as curve from "./curve"
 
 import { annotateAll } from "./annotate"
 
@@ -47,4 +48,18 @@ export const gno = annotateAll(
     cowswap: cowswap.gno,
   },
   "gno"
+)
+
+export const matic = annotateAll(
+  {
+    curve: curve.matic,
+  },
+  "matic"
+)
+
+export const arb1 = annotateAll(
+  {
+    aave_v3: aave_v3.arb1,
+  },
+  "arb1"
 )

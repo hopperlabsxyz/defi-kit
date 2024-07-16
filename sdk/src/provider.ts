@@ -17,3 +17,19 @@ export const gnoProvider = new providers.JsonRpcProvider(
     name: "Gnosis",
   }
 )
+
+export const maticProvider = new providers.JsonRpcProvider(
+  "https://rpc.gnosis.gateway.fm",
+  {
+    chainId: 137,
+    name: "Polygon",
+  }
+)
+
+export const arb1Provider = new providers.JsonRpcProvider(
+  "https://rpc.gnosis.gateway.fm",
+  {
+    chainId: 42161,
+    name: "ArbitrumOne",
+  }
+)

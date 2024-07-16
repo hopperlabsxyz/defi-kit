@@ -83,6 +83,7 @@ export const contracts = {
     curve: {
       regularPool: "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       metaPool: "0x4f062658eaaf2c1ccf8c8e36d6824cdf41167956",
+      stableNGPool: "0x02950460e2b9529d0e00284a5fa2d7bdf3fa4d72",
     },
     lido: {
       steth: "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
@@ -144,7 +145,21 @@ export const contractAddressOverrides = {
       reward_pool_deposit_wrapper: "0x0Fec3d212BcC29eF3E505B555D7a7343DF0B7F76",
     },
   },
-}
+  matic: {
+    weth: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+    usdc: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
+    dai: "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
+  },
+  arbitrumOne: {
+    aaveV3: {
+      aaveLendingPoolV3: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+      wrappedTokenGatewayV3: "0xecD4bd3121F9FD604ffaC631bF6d41ec12f1fafb",
+      variableDebtWETH: "0xeA51d7853EEFb32b6ee06b1C12E6dcCA88Be0fFE",
+      stableDebtWETH: "0x102633152313C81cD80419b6EcF66d14Ad68949A",
+    },
+    weth: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+  },
+} as const satisfies EthSdkConfig["contracts"]
 
 export default defineConfig({
   contracts,

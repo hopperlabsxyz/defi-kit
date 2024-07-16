@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.10.1](https://github.com/karpatkey/defi-kit/compare/v1.10.0...v1.10.1) (2024-06-11)
+
+
+### Bug Fixes
+
+* Rename "tokens" to "targets" in Borrow Action ([#181](https://github.com/karpatkey/defi-kit/issues/181)) ([8a93714](https://github.com/karpatkey/defi-kit/commit/8a9371400ca396aa42cc6f72eb440d43e5c6382f))
+
+## [1.10.0](https://github.com/karpatkey/defi-kit/compare/v1.9.0...v1.10.0) (2024-06-11)
+
+
+### Features
+
+* Adding fork env var ([#175](https://github.com/karpatkey/defi-kit/issues/175)) ([9ec1e7b](https://github.com/karpatkey/defi-kit/commit/9ec1e7b2edce16adc149f41f379a9128e650d1b7))
+
 ## [1.9.0](https://github.com/karpatkey/defi-kit/compare/v1.8.9...v1.9.0) (2024-05-06)
 
 
