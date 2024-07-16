@@ -49,14 +49,19 @@ export const depositEther = (chain: Chain) => {
   let aaveLendingPoolV3: `0x${string}`
   let weth: `0x${string}`
   let wrappedTokenGatewayV3: `0x${string}`
-  let aWETH: `0x${string}`
 
+  const permissions: Permission[] = []
   switch (chain) {
     case Chain.eth:
       aaveLendingPoolV3 = contracts.mainnet.aaveV3.aaveLendingPoolV3
       weth = contracts.mainnet.weth
       wrappedTokenGatewayV3 = contracts.mainnet.aaveV3.wrappedTokenGatewayV3
-      aWETH = contracts.mainnet.aaveV3.aEthWETH
+      permissions.push(
+        ...allowErc20Approve(
+          [contracts.mainnet.aaveV3.aEthWETH],
+          [wrappedTokenGatewayV3]
+        )
+      )
       break
     case Chain.arb1:
       aaveLendingPoolV3 =
@@ -64,12 +69,10 @@ export const depositEther = (chain: Chain) => {
       weth = contractAddressOverrides.arbitrumOne.weth
       wrappedTokenGatewayV3 =
         contractAddressOverrides.arbitrumOne.aaveV3.wrappedTokenGatewayV3
-      aWETH = contractAddressOverrides.arbitrumOne.aaveV3.aArbWETH
       break
   }
 
-  return [
-    ...allowErc20Approve([aWETH], [wrappedTokenGatewayV3]),
+  permissions.push(
     {
       ...allow.mainnet.aaveV3.wrappedTokenGatewayV3.depositETH(
         aaveLendingPoolV3,
@@ -92,8 +95,9 @@ export const depositEther = (chain: Chain) => {
         weth
       ),
       targetAddress: aaveLendingPoolV3,
-    },
-  ]
+    }
+  )
+  return permissions
 }
 
 export const borrowToken = (token: Token, chain: Chain) => {

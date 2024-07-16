@@ -69,7 +69,7 @@
     "@ethersproject/abi": "^5.7.0",
     "ethers": "^5.7.2",
     "zod": "^3.22.2",
-    "zodiac-roles-sdk": "^2.12.5"
+    "zodiac-roles-sdk": "^2.13.1"
   },
   "devDependencies": {
     "@dethcrypto/eth-sdk": "^0.3.4",

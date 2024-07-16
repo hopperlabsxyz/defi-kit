@@ -154,7 +154,6 @@ export const contractAddressOverrides = {
     aaveV3: {
       aaveLendingPoolV3: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
       wrappedTokenGatewayV3: "0xecD4bd3121F9FD604ffaC631bF6d41ec12f1fafb",
-      aArbWETH: "0x4d5F47FA6A74757f35C14fD3a6Ef8E3C9BC514E8",
       variableDebtWETH: "0xeA51d7853EEFb32b6ee06b1C12E6dcCA88Be0fFE",
       stableDebtWETH: "0x102633152313C81cD80419b6EcF66d14Ad68949A",
     },
