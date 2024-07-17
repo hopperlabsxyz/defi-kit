@@ -60,6 +60,7 @@ export const matic = annotateAll(
 export const arb1 = annotateAll(
   {
     aave_v3: aave_v3.arb1,
+    cowswap: cowswap.arb1,
   },
   "arb1"
 )
