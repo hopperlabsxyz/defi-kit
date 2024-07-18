@@ -3,10 +3,7 @@ import { Pool, Token } from "./types"
 import { allowErc20Approve } from "../../conditions"
 import { allow } from "zodiac-roles-sdk/kit"
 
-export const addLiquidity = (
-  pool: Pool,
-  tokens: readonly Token[] = pool.tokens
-) => {
+export const deposit = (pool: Pool, tokens: readonly Token[] = pool.tokens) => {
   const tokenAddresses = tokens.map((token) => token.address)
 
   const permissions: Permission[] = [

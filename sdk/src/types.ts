@@ -24,8 +24,6 @@ export type ProtocolActions = {
   lock?: ActionFunction
 
   delegate?: ActionFunction
-
-  addLiquidity?: ActionFunction
 }
 
 export type ActionName = keyof ProtocolActions

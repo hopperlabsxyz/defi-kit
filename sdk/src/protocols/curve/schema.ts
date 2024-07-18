@@ -18,7 +18,7 @@ const zmaticPools = z.enum([
 const zmaticToken = z.enum(maticTokens as [string, string, ...string[]])
 
 export const matic = {
-  addLiquidity: z.object({
+  deposit: z.object({
     targets: zmaticPools.array(),
     tokens: zmaticToken.array().optional(),
   }),

@@ -1,5 +1,5 @@
 import { NotFoundError } from "../../errors"
-import { addLiquidity } from "./action"
+import { deposit } from "./action"
 import maticPools from "./_maticPools"
 import { Pool, Token } from "./types"
 
@@ -31,7 +31,7 @@ const findToken = (pools: readonly Pool[], symbolOrAddress: string): Token => {
 }
 
 export const matic = {
-  addLiquidity: async ({
+  deposit: async ({
     targets,
     tokens,
   }: {
@@ -39,7 +39,7 @@ export const matic = {
     tokens?: (Token["address"] | Token["name"])[]
   }) => {
     return targets.flatMap((target) => {
-      return addLiquidity(
+      return deposit(
         findPool(maticPools, target),
         tokens?.map((addressOrName) => findToken(maticPools, addressOrName))
       )
