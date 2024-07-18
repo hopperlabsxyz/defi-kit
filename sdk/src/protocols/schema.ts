@@ -49,4 +49,5 @@ export const matic = {
 
 export const arb1 = {
   aave_v3: aave_v3.arb1,
+  cowswap: cowswap.arb1,
 } satisfies Record<string, ProtocolSchemas>

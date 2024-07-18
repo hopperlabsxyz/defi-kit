@@ -1,5 +1,6 @@
 import { z } from "zod"
 import { zx } from "../../zx"
+import arb1Tokens from "./_info_arbitrum"
 
 const swap = z.object({
   sell: zx.address().or(z.literal("ETH")).array(),
@@ -12,4 +13,17 @@ export const eth = {
 
 export const gno = {
   swap,
+}
+
+const zArb1Token = z.enum([
+  "ETH",
+  ...arb1Tokens.map((token) => token.symbol),
+  ...arb1Tokens.map((token) => token.token),
+] as [string, string, ...string[]])
+
+export const arb1 = {
+  swap: z.object({
+    sell: zx.address().or(zArb1Token).array(),
+    buy: zx.address().or(zArb1Token).array(),
+  }),
 }
