@@ -1,7 +1,7 @@
 export default [
   {
     address: "0x5225010a0ae133b357861782b0b865a48471b2c5",
-    symbol: "crvusdusdc",
+    symbol: "crvUSDC",
     tokens: [
       {
         name: "USDC",

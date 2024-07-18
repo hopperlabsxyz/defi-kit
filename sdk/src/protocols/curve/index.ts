@@ -1,6 +1,7 @@
 import { NotFoundError } from "../../errors"
 import { deposit } from "./action"
 import maticPools from "./_maticPools"
+import arb1Pools from "./_arb1Pools"
 import { Pool, Token } from "./types"
 
 const findPool = (pools: readonly Pool[], symbolOrAddress: string): Pool => {
@@ -42,6 +43,23 @@ export const matic = {
       return deposit(
         findPool(maticPools, target),
         tokens?.map((addressOrName) => findToken(maticPools, addressOrName))
+      )
+    })
+  },
+}
+
+export const arb1 = {
+  deposit: async ({
+    targets,
+    tokens,
+  }: {
+    targets: (Pool["address"] | Pool["symbol"])[]
+    tokens?: (Token["address"] | Token["name"])[]
+  }) => {
+    return targets.flatMap((target) => {
+      return deposit(
+        findPool(arb1Pools, target),
+        tokens?.map((addressOrName) => findToken(arb1Pools, addressOrName))
       )
     })
   },
