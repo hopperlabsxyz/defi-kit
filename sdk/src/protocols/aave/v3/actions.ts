@@ -16,6 +16,8 @@ export const depositToken = (token: Token, chain: Chain) => {
       aaveLendingPoolV3 =
         contractAddressOverrides.arbitrumOne.aaveV3.aaveLendingPoolV3
       break
+    default:
+      throw new Error(`Unsupported chain ${chain}`)
   }
 
   return [
@@ -70,6 +72,8 @@ export const depositEther = (chain: Chain) => {
       wrappedTokenGatewayV3 =
         contractAddressOverrides.arbitrumOne.aaveV3.wrappedTokenGatewayV3
       break
+    default:
+      throw new Error(`Unsupported chain ${chain}`)
   }
 
   permissions.push(
@@ -111,6 +115,8 @@ export const borrowToken = (token: Token, chain: Chain) => {
       aaveLendingPoolV3 =
         contractAddressOverrides.arbitrumOne.aaveV3.aaveLendingPoolV3
       break
+    default:
+      throw new Error(`Unsupported chain ${chain}`)
   }
 
   return [
@@ -159,6 +165,8 @@ export const borrowEther = (chain: Chain) => {
       wrappedTokenGatewayV3 =
         contractAddressOverrides.arbitrumOne.aaveV3.wrappedTokenGatewayV3
       break
+    default:
+      throw new Error(`Unsupported chain ${chain}`)
   }
 
   const permissions: Permission[] = [

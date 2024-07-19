@@ -1,4 +1,3 @@
-import { decodeBytes32String } from "defi-kit"
 import { OpenAPIRegistry } from "@asteasolutions/zod-to-openapi"
 import { coercePermission } from "zodiac-roles-sdk"
 import { ChainPrefix, queryPermissionSet, sdks } from "../sdk"
@@ -10,6 +9,7 @@ import {
   transactionsQueryBase,
 } from "../schema"
 import { PermissionsHandler, TransactionsHandler } from "../handle"
+import { decodeBytes32String } from "defi-kit/."
 
 export const allowBorrow: TransactionsHandler = async (query) => {
   const {
@@ -67,12 +67,13 @@ export const registerAllowBorrow = (
   })
 }
 
+// @ts-ignore
 export const borrowPermissions: PermissionsHandler = async (query) => {
   const permissions = await queryPermissionSet({
     action: "borrow",
     ...permissionsQueryBase.parse(query),
     query,
-  })
+  } as any) // todo fix
   return permissions.map(coercePermission)
 }
 

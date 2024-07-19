@@ -5,9 +5,10 @@
   "author": "Gnosis Guild",
   "license": "LGPL-3.0",
   "workspaces": [
-    "sdk",
+    "defi-kit",
     "app",
-    "playground"
+    "playground",
+    "sdk"
   ],
   "scripts": {
     "setup": "yarn workspace defi-kit run setup",

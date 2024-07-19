@@ -33,3 +33,19 @@ export const arb1Provider = new providers.JsonRpcProvider(
     name: "ArbitrumOne",
   }
 )
+
+export function getProviderByChainId(chainId: number) {
+  if (chainId === 1) {
+    return ethProvider
+  }
+  if (chainId === 100) {
+    return gnoProvider
+  }
+  if (chainId === 137) {
+    return maticProvider
+  }
+  if (chainId === 42161) {
+    return arb1Provider
+  }
+  throw new Error(`Unsupported chainId ${chainId}`)
+}

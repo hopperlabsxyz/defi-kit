@@ -136,6 +136,14 @@ export const contracts = {
     usdt: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
     weth: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
   },
+  arbitrumOne: {
+    uniswap_v3: {
+      positions_nft: "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+      factory: "0x1F98431c8aD98523631AE4a59f267346ea31F984",
+      pool: "0xbE3aD6a5669Dc0B8b12FeBC03608860C31E2eef6", // USDC/USDT 0.3%
+    },
+    weth: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+  },
 } as const satisfies EthSdkConfig["contracts"]
 
 export const contractAddressOverrides = {
@@ -151,12 +159,13 @@ export const contractAddressOverrides = {
     dai: "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
   },
   arbitrumOne: {
-    aaveV3: {
-      aaveLendingPoolV3: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
-      wrappedTokenGatewayV3: "0xecD4bd3121F9FD604ffaC631bF6d41ec12f1fafb",
-      variableDebtWETH: "0xeA51d7853EEFb32b6ee06b1C12E6dcCA88Be0fFE",
-      stableDebtWETH: "0x102633152313C81cD80419b6EcF66d14Ad68949A",
-    },
+    // aaveV3: {
+    //   aaveLendingPoolV3: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+    //   wrappedTokenGatewayV3: "0xecD4bd3121F9FD604ffaC631bF6d41ec12f1fafb",
+    //   variableDebtWETH: "0xeA51d7853EEFb32b6ee06b1C12E6dcCA88Be0fFE",
+    //   stableDebtWETH: "0x102633152313C81cD80419b6EcF66d14Ad68949A",
+    // },
+
     weth: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
   },
 } as const satisfies EthSdkConfig["contracts"]

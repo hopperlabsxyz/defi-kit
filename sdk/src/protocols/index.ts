@@ -62,6 +62,7 @@ export const arb1 = annotateAll(
     aave_v3: aave_v3.arb1,
     cowswap: cowswap.arb1,
     curve: curve.arb1,
+    uniswap_v3: uniswap_v3.arb1,
   },
   "arb1"
 )
