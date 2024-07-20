@@ -1,10 +1,9 @@
-import ethInfo from "./_info_ethereum"
-import arbInfo from "./_info_arbitrum"
+import tokensEthereum from "./_info_ethereum"
+import tokensArbitrum from "./_info_arbitrum"
 
-export type EthToken = (typeof ethInfo)[number]
-export type ArbToken = (typeof arbInfo)[number]
-
-export type Token = EthToken | ArbToken
+export type TokenEthereum = (typeof tokensEthereum)[number]
+export type TokensArbitrum = (typeof tokensArbitrum)[number]
+export type Token = TokenEthereum | TokensArbitrum
 
 export const FEES = ["0.01%", "0.05%", "0.3%", "1%"] as const
 

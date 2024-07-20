@@ -1,4 +1,5 @@
 import { providers } from "ethers"
+import { Chain } from "./types"
 
 console.log("node env", process.env.NODE_ENV)
 
@@ -34,18 +35,17 @@ export const arb1Provider = new providers.JsonRpcProvider(
   }
 )
 
-export function getProviderByChainId(chainId: number) {
-  if (chainId === 1) {
-    return ethProvider
+export function getProviderByChainId(chain: Chain) {
+  switch (chain) {
+    case Chain.eth:
+      return ethProvider
+    case Chain.gno:
+      return gnoProvider
+    case Chain.matic:
+      return maticProvider
+    case Chain.arb1:
+      return arb1Provider
+    default:
+      throw new Error(`Unsupported chain ${chain}`)
   }
-  if (chainId === 100) {
-    return gnoProvider
-  }
-  if (chainId === 137) {
-    return maticProvider
-  }
-  if (chainId === 42161) {
-    return arb1Provider
-  }
-  throw new Error(`Unsupported chainId ${chainId}`)
 }
