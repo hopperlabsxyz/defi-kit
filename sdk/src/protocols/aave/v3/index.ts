@@ -13,7 +13,7 @@ const findTokenArbitrum = (symbolOrAddress: string): TokensArbitrum => {
   const token = tokensArbitrum.find(
     (token) =>
       token.symbol.toLowerCase() === symbolOrAddressLower ||
-      token.token.toLowerCase() === symbolOrAddressLower
+      token.token.toLowerCase() === symbolOrAddressLower,
   )
 
   if (!token) {
@@ -28,7 +28,7 @@ const findTokenEthereum = (symbolOrAddress: string): TokenEthereum => {
   const token = tokensEthereum.find(
     (token) =>
       token.symbol.toLowerCase() === symbolOrAddressLower ||
-      token.token.toLowerCase() === symbolOrAddressLower
+      token.token.toLowerCase() === symbolOrAddressLower,
   )
   if (!token) {
     throw new NotFoundError(`Token not found: ${symbolOrAddress}`)
@@ -45,7 +45,7 @@ export const eth = {
     return targets.flatMap((target) =>
       target === "ETH"
         ? depositEther(Chain.eth)
-        : depositToken(findTokenEthereum(target), Chain.eth)
+        : depositToken(findTokenEthereum(target), Chain.eth),
     )
   },
 
@@ -57,7 +57,7 @@ export const eth = {
     return targets.flatMap((target) =>
       target === "ETH"
         ? borrowEther(Chain.eth)
-        : borrowToken(findTokenEthereum(target), Chain.eth)
+        : borrowToken(findTokenEthereum(target), Chain.eth),
     )
   },
 
@@ -77,7 +77,7 @@ export const eth = {
     delegatee: string
   }) => {
     return targets.flatMap((target) =>
-      delegate(findDelegateToken(target), delegatee)
+      delegate(findDelegateToken(target), delegatee),
     )
   },
 }
@@ -91,7 +91,7 @@ export const arb1 = {
     return targets.flatMap((target) =>
       target === "ETH"
         ? depositEther(Chain.arb1)
-        : depositToken(findTokenArbitrum(target), Chain.arb1)
+        : depositToken(findTokenArbitrum(target), Chain.arb1),
     )
   },
 
@@ -103,7 +103,7 @@ export const arb1 = {
     return targets.flatMap((target) =>
       target === "ETH"
         ? borrowEther(Chain.arb1)
-        : borrowToken(findTokenArbitrum(target), Chain.arb1)
+        : borrowToken(findTokenArbitrum(target), Chain.arb1),
     )
   },
 }
