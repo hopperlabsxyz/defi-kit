@@ -15,6 +15,7 @@ import * as stader from "./stader/schema"
 import * as stakewise_v2 from "./stakewise/v2/schema"
 import * as uniswap_v3 from "./uniswap/v3/schema"
 import * as curve from "./curve/schema"
+import * as hopper from "./hopper/schema"
 import { ProtocolSchemas } from "../types"
 
 // group all protocols schemas by chain
@@ -52,4 +53,5 @@ export const arb1 = {
   cowswap: cowswap.arb1,
   curve: curve.arb1,
   uniswap_v3: uniswap_v3.arb1,
+  hopper: hopper.arb1,
 } satisfies Record<string, ProtocolSchemas>

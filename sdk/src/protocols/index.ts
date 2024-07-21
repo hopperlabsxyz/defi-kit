@@ -15,6 +15,7 @@ import * as stader from "./stader"
 import * as stakewise_v2 from "./stakewise/v2"
 import * as uniswap_v3 from "./uniswap/v3"
 import * as curve from "./curve"
+import * as hopper from "./hopper"
 
 import { annotateAll } from "./annotate"
 
@@ -63,6 +64,7 @@ export const arb1 = annotateAll(
     cowswap: cowswap.arb1,
     curve: curve.arb1,
     uniswap_v3: uniswap_v3.arb1,
+    hopper: hopper.arb1,
   },
   "arb1"
 )
