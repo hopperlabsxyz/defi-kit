@@ -18,15 +18,19 @@ export const eth = {
   }),
 }
 
-const arbTokens = [
+const arb1Tokens = [
   ...new Set(ArbInfo.flatMap((token) => [token.address, token.symbol])),
 ]
-const zArbToken = z.enum(arbTokens as [string, string, ...string[]])
+const zArbToken = z.enum(arb1Tokens as [string, string, ...string[]])
+
+const arb1TokensOptions = [
+  ...new Set(ArbInfo.flatMap((token) => [token.symbol])),
+].join(", ")
 
 export const arb1 = {
   deposit: z.object({
-    targets: z.string().array().optional(),
-    tokens: zArbToken.array().optional(),
+    targets: z.string().array().optional().describe("0x..."),
+    tokens: zArbToken.array().optional().describe(`(${arb1TokensOptions}`),
     fees: zFee.array().optional(),
   }),
 }

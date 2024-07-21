@@ -23,24 +23,32 @@ const zEthDelegateToken = z.enum([
 
 const zDelegatee = zx.address()
 
+const ethOptions = ethTokens.map((token) => token.symbol).join(", ")
+const ethStakeOptions = ethStakeTokens.map((token) => token.symbol).join(", ")
+const ethDelegateOptions = ethDelegateTokens
+  .map((token) => token.symbol)
+  .join(", ")
+
 export const eth = {
   deposit: z.object({
-    targets: zEthToken.array(),
+    targets: zEthToken.array().describe(ethOptions),
   }),
 
   borrow: z.object({
-    targets: zEthToken.array(),
+    targets: zEthToken.array().describe(ethOptions),
   }),
 
   stake: z.object({
-    targets: zEthStakeToken.array(),
+    targets: zEthStakeToken.array().describe(ethStakeOptions),
   }),
 
   delegate: z.object({
-    targets: zEthDelegateToken.array(),
-    delegatee: zDelegatee,
+    targets: zEthDelegateToken.array().describe(ethDelegateOptions),
+    delegatee: zDelegatee.describe("0x..."),
   }),
 }
+
+const arb1Options = arb1Tokens.map((token) => token.symbol).join(", ")
 
 const zArb1Token = z.enum([
   "ETH",
@@ -50,10 +58,10 @@ const zArb1Token = z.enum([
 
 export const arb1 = {
   deposit: z.object({
-    targets: zArb1Token.array(),
+    targets: zArb1Token.array().describe(arb1Options),
   }),
 
   borrow: z.object({
-    targets: zArb1Token.array(),
+    targets: zArb1Token.array().describe(arb1Options),
   }),
 }

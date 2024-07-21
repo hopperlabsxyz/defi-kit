@@ -41,9 +41,19 @@ export const matic = {
   }),
 }
 
+const arb1TokensOptions = [
+  ...new Set(
+    arb1Pools
+      .flatMap((pool) => pool.tokens as readonly arb1Token[])
+      .flatMap((token) => [token.name])
+  ),
+].join(", ")
+
+const arb1PoolsOptions = arb1Pools.map((pool) => pool.symbol).join(", ")
+
 export const arb1 = {
   deposit: z.object({
-    targets: zarb1Pools.array(),
-    tokens: zarb1Token.array().optional(),
+    targets: zarb1Pools.array().describe(arb1PoolsOptions),
+    tokens: zarb1Token.array().optional().describe(`${arb1TokensOptions}`),
   }),
 }

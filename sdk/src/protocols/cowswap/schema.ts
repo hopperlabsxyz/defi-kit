@@ -21,9 +21,11 @@ const zArb1Token = z.enum([
   ...arb1Tokens.map((token) => token.token),
 ] as [string, string, ...string[]])
 
+const arb1Options = arb1Tokens.map((token) => token.symbol).join(", ")
+
 export const arb1 = {
   swap: z.object({
-    sell: zx.address().or(zArb1Token).array(),
-    buy: zx.address().or(zArb1Token).array(),
+    sell: zx.address().or(zArb1Token).array().describe(`0x..., ${arb1Options}`),
+    buy: zx.address().or(zArb1Token).array().describe(`0x..., ${arb1Options}`),
   }),
 }
