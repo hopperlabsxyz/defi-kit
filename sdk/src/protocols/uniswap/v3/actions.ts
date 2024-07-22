@@ -14,6 +14,7 @@ import { c, Permission } from "zodiac-roles-sdk"
 import { BigNumber } from "ethers"
 import { NotFoundError } from "../../../errors"
 import { Chain } from "../../../types"
+import { contracts } from "../../../../eth-sdk/config"
 export interface DepositParams {
   /** Position NFT token IDs to allow depositing into. If unspecified, all positions owned by avatar can be managed that are in any pair of the specified `tokens`.
    *
@@ -21,7 +22,7 @@ export interface DepositParams {
    */
   targets?: string[]
   /** Positions can be minted for any pair of the specified `tokens`. If unspecified, minting of new positions won't be allowed. */
-  tokens?: (Token["address"] | Token["symbol"])[]
+  tokens?: (Token["token"] | Token["symbol"])[]
   fees?: Fee[]
   chain: Chain
 }
@@ -78,8 +79,8 @@ export const deposit = async ({
       ...allow.mainnet.uniswap_v3.positions_nft.decreaseLiquidity(
         nftIds
           ? {
-              tokenId: oneOf(nftIds),
-            }
+            tokenId: oneOf(nftIds),
+          }
           : undefined
       ),
       targetAddress,
@@ -142,4 +143,24 @@ export const deposit = async ({
   }
 
   return permissions
+}
+
+export const swapToken = (tokens: Token[]) => {
+  const router = contracts.arbitrumOne.uniswap_v3.swap_router
+  return [
+    ...allowErc20Approve(
+      tokens.map((token) => token.token),
+      ["0x000000000022d473030f116ddee9f6b43ac78ba3"]
+    ),
+    {
+      ...allow.arbitrumOne.uniswap_v3.swap_router["execute(bytes,bytes[])"](),
+      targetAddress: router,
+    },
+    {
+      ...allow.arbitrumOne.uniswap_v3.swap_router[
+        "execute(bytes,bytes[],uint256)"
+      ](),
+      targetAddress: router,
+    },
+  ]
 }

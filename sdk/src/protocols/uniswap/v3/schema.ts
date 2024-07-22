@@ -6,7 +6,7 @@ import { FEES } from "./types"
 const zFee = z.enum(FEES)
 
 const ethTokens = [
-  ...new Set(EthInfo.flatMap((token) => [token.address, token.symbol])),
+  ...new Set(EthInfo.flatMap((token) => [token.token, token.symbol])),
 ]
 const zEthToken = z.enum(ethTokens as [string, string, ...string[]])
 
@@ -19,9 +19,9 @@ export const eth = {
 }
 
 const arb1Tokens = [
-  ...new Set(ArbInfo.flatMap((token) => [token.address, token.symbol])),
+  ...new Set(ArbInfo.flatMap((token) => [token.token, token.symbol])),
 ]
-const zArbToken = z.enum(arb1Tokens as [string, string, ...string[]])
+const zArb1Token = z.enum(arb1Tokens as [string, string, ...string[]])
 
 const arb1TokensOptions = [
   ...new Set(ArbInfo.flatMap((token) => [token.symbol])),
@@ -30,7 +30,10 @@ const arb1TokensOptions = [
 export const arb1 = {
   deposit: z.object({
     targets: z.string().array().optional().describe("0x..."),
-    tokens: zArbToken.array().optional().describe(`(${arb1TokensOptions}`),
+    tokens: zArb1Token.array().optional().describe(`(${arb1TokensOptions}`),
     fees: zFee.array().optional(),
+  }),
+  swap: z.object({
+    targets: zArb1Token.array().describe(arb1TokensOptions),
   }),
 }

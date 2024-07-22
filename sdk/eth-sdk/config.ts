@@ -143,6 +143,9 @@ export const contracts = {
     cowswap: {
       GPv2Settlement: "0x9008D19f58AAbD9eD0D60971565AA8510560ab41",
     },
+    uniswap_v3: {
+      swap_router: "0x5E325eDA8064b456f4781070C0738d849c824258",
+    },
   },
 } as const satisfies EthSdkConfig["contracts"]
 
