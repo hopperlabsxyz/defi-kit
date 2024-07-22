@@ -139,6 +139,11 @@ export const contracts = {
     usdt: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
     weth: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
   },
+  arbitrumOne: {
+    cowswap: {
+      GPv2Settlement: "0x9008D19f58AAbD9eD0D60971565AA8510560ab41",
+    },
+  },
 } as const satisfies EthSdkConfig["contracts"]
 
 export const contractAddressOverrides = {
@@ -170,5 +175,8 @@ export const contractAddressOverrides = {
 } as const satisfies EthSdkConfig["contracts"]
 
 export default defineConfig({
+  rpc: {
+    arbitrumOne: "https://arb1.arbitrum.io/rpc",
+  },
   contracts,
 })

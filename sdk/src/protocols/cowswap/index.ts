@@ -5,6 +5,7 @@ import { c, Permission } from "zodiac-roles-sdk"
 import { Token, TokensArbitrum } from "./types"
 import { Chain } from "../../types"
 import { NotFoundError } from "../../errors"
+import { contractAddressOverrides } from "../../../eth-sdk/config"
 
 const GPv2VaultRelayer = "0xC92E8bdf79f0507f65a392b0ab4667716BFE0110"
 const E_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
@@ -24,7 +25,7 @@ const findTokenArbitrum = (symbolOrAddress: string): TokensArbitrum => {
   return token
 }
 
-const swap = async ({
+const swapTokens = async ({
   sell,
   buy,
   chain,
@@ -90,18 +91,47 @@ const swap = async ({
       delegatecall: true,
     })
   )
+  if (chain === Chain.arb1) {
+    permissions.push({
+      ...allow.arbitrumOne.cowswap.GPv2Settlement.setPreSignature(),
+    })
+  }
 
   return permissions
 }
 
 export const eth = {
-  swap,
+  swap: async ({
+    sell,
+    buy,
+  }: {
+    sell: ("ETH" | `0x${string}` | Token["symbol"])[]
+    buy?: ("ETH" | `0x${string}` | Token["symbol"])[]
+  }) => {
+    return swapTokens({ sell, chain: Chain.eth, buy })
+  },
 }
 
 export const gno = {
-  swap,
+  swap: async ({
+    sell,
+    buy,
+  }: {
+    sell: ("ETH" | `0x${string}` | Token["symbol"])[]
+    buy?: ("ETH" | `0x${string}` | Token["symbol"])[]
+  }) => {
+    return swapTokens({ sell, chain: Chain.gno, buy })
+  },
 }
 
 export const arb1 = {
-  swap,
+  swap: async ({
+    sell,
+    buy,
+  }: {
+    sell: ("ETH" | `0x${string}` | Token["symbol"])[]
+    buy?: ("ETH" | `0x${string}` | Token["symbol"])[]
+  }) => {
+    return swapTokens({ sell, chain: Chain.arb1, buy })
+  },
 }

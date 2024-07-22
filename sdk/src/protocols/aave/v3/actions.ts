@@ -31,11 +31,13 @@ export const depositToken = (token: Token, chain: Chain) => {
       targetAddress: aaveLendingPoolV3,
     },
     {
-      ...allow.mainnet.aaveV3.aaveLendingPoolV3.withdraw(
-        token.token,
-        undefined,
-        c.avatar
-      ),
+      ...allow.mainnet.aaveV3.aaveLendingPoolV3[
+        "withdraw(address,uint256,address)"
+      ](token.token, undefined, c.avatar),
+      targetAddress: aaveLendingPoolV3,
+    },
+    {
+      ...allow.mainnet.aaveV3.aaveLendingPoolV3["withdraw(bytes32)"](undefined),
       targetAddress: aaveLendingPoolV3,
     },
     {
