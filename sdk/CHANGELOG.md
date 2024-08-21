@@ -1,5 +1,46 @@
 # Changelog
 
+## 1.0.0 (2024-08-21)
+
+
+### Features
+
+* add Ankr ([#100](https://github.com/hopperlabsxyz/defi-kit/issues/100)) ([5417f6a](https://github.com/hopperlabsxyz/defi-kit/commit/5417f6ac0c9027857a244ab4579ae25e31b22ad3))
+* Add Arbitrum Support to Defi Kit with Cow Protocol Integration ([#215](https://github.com/hopperlabsxyz/defi-kit/issues/215)) ([d493b86](https://github.com/hopperlabsxyz/defi-kit/commit/d493b86b7d72e5dae83c056944b152d6c583a836))
+* add rocket pool ([#98](https://github.com/hopperlabsxyz/defi-kit/issues/98)) ([ae7ef49](https://github.com/hopperlabsxyz/defi-kit/commit/ae7ef49846377a126bd4ff80029d526be2ed5db8))
+* add Stader ([#103](https://github.com/hopperlabsxyz/defi-kit/issues/103)) ([e7999ab](https://github.com/hopperlabsxyz/defi-kit/commit/e7999abe4d93d345959da1d0b643ea2de6d0ae6e))
+* add Stakewise v2 / tweak univ3 / minor fixes ([#115](https://github.com/hopperlabsxyz/defi-kit/issues/115)) ([a7b85e9](https://github.com/hopperlabsxyz/defi-kit/commit/a7b85e9dd90ffde674e0ce9d8213b20b2758f641))
+* add Uniswap v3 ([#109](https://github.com/hopperlabsxyz/defi-kit/issues/109)) ([76c1ee8](https://github.com/hopperlabsxyz/defi-kit/commit/76c1ee8a02dfadfd40638e1ea75c179fd59a38ea))
+* Adding fork env var ([#175](https://github.com/hopperlabsxyz/defi-kit/issues/175)) ([9ec1e7b](https://github.com/hopperlabsxyz/defi-kit/commit/9ec1e7b2edce16adc149f41f379a9128e650d1b7))
+* GHO stake / ABPTv2 stake ([#163](https://github.com/hopperlabsxyz/defi-kit/issues/163)) ([2c32fdb](https://github.com/hopperlabsxyz/defi-kit/commit/2c32fdbb61486ff183e1c12cd2cb2e1c1e51f115))
+* new protocols ([1ce7b54](https://github.com/hopperlabsxyz/defi-kit/commit/1ce7b54280fdf2607a62c64155ad74c42cfeef88))
+* new protocols ([46d2f13](https://github.com/hopperlabsxyz/defi-kit/commit/46d2f13f17310d8ee0c000ad1ac081f73e2f398b))
+* optional feeAmountBP constraint in Cow ([#212](https://github.com/hopperlabsxyz/defi-kit/issues/212)) ([8bac172](https://github.com/hopperlabsxyz/defi-kit/commit/8bac1723dd8b0e75963e1ae9cb12557cd46094a7))
+* tweak cowswap and add api-docs ([#120](https://github.com/hopperlabsxyz/defi-kit/issues/120)) ([2c82387](https://github.com/hopperlabsxyz/defi-kit/commit/2c823874fd26c9670eafcc44e0bb221d5975ee2f))
+
+
+### Bug Fixes
+
+* Aave v3 unnecessary approval of aEthWeth ([#147](https://github.com/hopperlabsxyz/defi-kit/issues/147)) ([c9e3e8d](https://github.com/hopperlabsxyz/defi-kit/commit/c9e3e8de7046d6891ac239432b9e9e89a5247110))
+* Aave v3 Wrapped Token Gateway v3 new version ([#140](https://github.com/hopperlabsxyz/defi-kit/issues/140)) ([d2f2d01](https://github.com/hopperlabsxyz/defi-kit/commit/d2f2d01b5d7ae3166fb6efaaa6551c63ac62089b))
+* Aura python script ([#144](https://github.com/hopperlabsxyz/defi-kit/issues/144)) ([db8e9c8](https://github.com/hopperlabsxyz/defi-kit/commit/db8e9c8e13bc4288b99dda71647c27f48c4b19e5))
+* Bump release on a new version ([#198](https://github.com/hopperlabsxyz/defi-kit/issues/198)) ([3175fdc](https://github.com/hopperlabsxyz/defi-kit/commit/3175fdc95453cbab21b1067360ff360082ab7f62))
+* bump zodiac-roles-sdk version ([1113277](https://github.com/hopperlabsxyz/defi-kit/commit/11132770ece23dbcd563639e65e4c9ea45d224b4))
+* CowSwap ETH ([#124](https://github.com/hopperlabsxyz/defi-kit/issues/124)) ([5c2fdf1](https://github.com/hopperlabsxyz/defi-kit/commit/5c2fdf17265636b4b4b54c94884ba3b219ce2050))
+* fix typing issue and app build after adding arb1 sdk ([#221](https://github.com/hopperlabsxyz/defi-kit/issues/221)) ([69619ed](https://github.com/hopperlabsxyz/defi-kit/commit/69619edbbfedc5e8391cf1785991ebd21262985e))
+* Protocol data update ([#203](https://github.com/hopperlabsxyz/defi-kit/issues/203)) ([9e18ad1](https://github.com/hopperlabsxyz/defi-kit/commit/9e18ad1ac2daa08be46f4a6df69597443907d064))
+* Release please ([#84](https://github.com/hopperlabsxyz/defi-kit/issues/84)) ([e8f5dba](https://github.com/hopperlabsxyz/defi-kit/commit/e8f5dba4a7acbfaa616e05435aa60d89628e2889))
+* remove tokens in rewards claiming ([059aa8a](https://github.com/hopperlabsxyz/defi-kit/commit/059aa8abcac888b1838c2a17d34878f4868bfe02))
+* Rename "tokens" to "targets" in Borrow Action ([#181](https://github.com/hopperlabsxyz/defi-kit/issues/181)) ([8a93714](https://github.com/hopperlabsxyz/defi-kit/commit/8a9371400ca396aa42cc6f72eb440d43e5c6382f))
+* Spark and Stader corrections ([#151](https://github.com/hopperlabsxyz/defi-kit/issues/151)) ([bc2a326](https://github.com/hopperlabsxyz/defi-kit/commit/bc2a3266153d90294405917a90c1f84d2f169d0f))
+* Spark incentives ([#159](https://github.com/hopperlabsxyz/defi-kit/issues/159)) ([2ec381d](https://github.com/hopperlabsxyz/defi-kit/commit/2ec381d9a0224138127f82603ac5d941cd062f1d))
+* test commit ([#83](https://github.com/hopperlabsxyz/defi-kit/issues/83)) ([399e2f4](https://github.com/hopperlabsxyz/defi-kit/commit/399e2f4bee09e6f6597e8ab248c01320c374dc1b))
+* ts-jest is only a dev dependency ([#93](https://github.com/hopperlabsxyz/defi-kit/issues/93)) ([8f182db](https://github.com/hopperlabsxyz/defi-kit/commit/8f182db6ba0d8f01a3dea36e88badcde0327dd7d))
+* Uniswap v3 empty targets ([36029b7](https://github.com/hopperlabsxyz/defi-kit/commit/36029b7433bbb291c2e3057edcfec1db6204acad))
+* Uniswap v3 mint function ([#155](https://github.com/hopperlabsxyz/defi-kit/issues/155)) ([384fcea](https://github.com/hopperlabsxyz/defi-kit/commit/384fcea6a00afa6e622be909e18fffc6dee052f3))
+* Uniswap v3 new subgraph endpoint ([#195](https://github.com/hopperlabsxyz/defi-kit/issues/195)) ([3fe87a0](https://github.com/hopperlabsxyz/defi-kit/commit/3fe87a0d2b156ee6fb077f0e109dcbcffcf87a50))
+* upgrade zodiac-roles-sdk ([#91](https://github.com/hopperlabsxyz/defi-kit/issues/91)) ([6449618](https://github.com/hopperlabsxyz/defi-kit/commit/64496184aae143156f9aed8695b54ed84fac0d91))
+
 ## [1.12.1](https://github.com/karpatkey/defi-kit/compare/v1.12.0...v1.12.1) (2024-08-20)
 
 
