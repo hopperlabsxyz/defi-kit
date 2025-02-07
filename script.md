@@ -12,6 +12,9 @@ protocol/
 
 ## Setup Steps
 
+0. config file set up + yarn setup
+add the address of the protocol inside the config file
+
 1. Create protocol directory and files:
 ```bash
 mkdir protocol
