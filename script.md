@@ -30,9 +30,9 @@ export type EthPool = (typeof ethPools)[number]
 
 ```bash
 cd protocol
-cat "import ethPools from "./_ethPools"
+echo "import ethPools from "./_ethPools"
 
-export type EthPool = (typeof ethPools)[number]" > type.ts
+export type EthPool = (typeof ethPools)[number]" > types.ts
 ```
 
 
@@ -57,7 +57,7 @@ export const eth = {
 ```
 
 ```bash
-cat "import { z } from "zod"
+echo "import { z } from "zod"
 import ethPools from "./_ethPools"
 
 const zEthPool = z.enum([
@@ -88,7 +88,7 @@ export default [
 ```
 
 ```bash
-cat "export default [
+echo "export default [
   {
     name: "DC_wstETH",
     address: "0xC329400492c6ff2438472D4651Ad17389fCb843a",
