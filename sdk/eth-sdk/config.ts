@@ -140,6 +140,9 @@ export const contracts = {
       sUsds: "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
       stakingRewards: "0x0650CAF159C5A49f711e8169D4336ECB9b950275",
     },
+    spectra: {
+      router: "0x8a697ae2f8897CB3C47eEb390cFf24BEFA703dfc",
+    },
     stader: {
       stakingPoolManager: "0xcf5EA1b38380f6aF39068375516Daf40Ed70D299",
       userWithdrawManager: "0x9F0491B32DBce587c50c4C43AB303b06478193A7",
