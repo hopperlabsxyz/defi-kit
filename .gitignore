@@ -21,3 +21,4 @@ playground/build
 
 sdk/dist
 sdk/.prettierrc
+sdk/src/protocols/spectra/input
