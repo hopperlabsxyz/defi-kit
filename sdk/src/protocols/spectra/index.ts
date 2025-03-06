@@ -23,31 +23,17 @@ const WSTETH = contracts.mainnet.lido.wstEth
 // }
 
 export const eth = {
-  deposit: async ({
-    targets,
-  }: {
-    targets: (EthPool["tokenAddress"] | EthPool["tokenSymbol"])[]
-  }) => {
-    return targets.flatMap((target) => {
-      // const pool = findPool(target)
-      const permissions: Permission[] = []
-      if (pool.tokenSymbol === "wstETH") {
-        permissions.push(
-          allow.mainnet.lido.stEth.approve(WSTETH),
-          allow.mainnet.lido.wstEth.wrap()
-        )
-      }
-      permissions.push(
-        ...allowErc20Approve([pool.tokenAddress], [pool.address]),
-        {
-          ...allow.mainnet.symbiotic.defaultCollateral.action1(
-            c.avatar,
-            undefined
-          ),
-          targetAddress: pool.address,
-        }
-      )
-      return permissions
-    })
+  deposit: async () => {
+    const encoded = c.abiEncodedMatches(["0x12"], ["bytes1"])
+    console.log(encoded())
+    return [
+      allow.mainnet.spectra.router["execute(bytes,bytes[])"](
+        // c.abiEncodedMatches(["0x12"], ["bytes1"]), //command
+        // encoded,
+        undefined, //inputs
+        undefined //inputs
+      ),
+    ]
   },
 }
+

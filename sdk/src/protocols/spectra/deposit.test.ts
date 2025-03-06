@@ -2,29 +2,28 @@ import { eth } from "."
 import { wallets } from "../../../test/wallets"
 import { applyPermissions, stealErc20 } from "../../../test/helpers"
 import { eth as kit } from "../../../test/kit"
-import { parseEther } from "ethers"
-import { Chain } from "../../../src"
+import { parseEther, toBeHex } from "ethers"
+import { Chain, contracts } from "../../../src"
+import { getProvider } from "../../../test/provider"
 
-const stealAddress = "0x3c22ec75ea5D745c78fc84762F7F1E6D82a2c5BF"
-const defaultCollateral = "0xC329400492c6ff2438472D4651Ad17389fCb843a" //wstETHPool
-const underlying = "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0" //wstETH token
-
-describe("symbiotic", () => {
+const weth = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+const input1 = "0x000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee000000000000000000000000000000000000000000000000001ba55f6289df860000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0"
+// const inpu4 = ""
+describe("spectra", () => {
   describe("deposit action", () => {
     beforeAll(async () => {
-      await applyPermissions(Chain.eth, await eth.deposit({ targets: ["wstETH"] }))
+      await applyPermissions(Chain.eth, await eth.deposit())
     })
 
     it("deposit", async () => {
-      const amount = parseEther("10")
-      await stealErc20(Chain.eth, underlying, amount, stealAddress)
-      await kit.asAvatar.weth
-        .attach(underlying)
-        .approve(defaultCollateral, amount)
+      const provider = getProvider(Chain.eth)
+      await provider.send("anvil_setBalance", [wallets.avatar, toBeHex(parseEther("10"))])
+      // contracts.mainnet.weth.a
       await expect(
-        kit.asMember.symbiotic.defaultCollateral
-          .attach(defaultCollateral)
-          ["deposit(address,uint256)"](wallets.avatar, amount)
+        kit.asMember.spectra.router["execute(bytes,bytes[])"](
+          "0x00",
+          [input1]
+        )
       ).not.toRevert()
     })
   })
