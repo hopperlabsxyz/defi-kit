@@ -29,6 +29,8 @@ describe("spectra", () => {
       //  * Transfers tokens from msg.sender to the Router.
       //   * (address token, uint256 value)
       //   */
+      // Try using a different command format - either the function selector or properly encoded
+      const SPECTRA_CMD = "0xe21fd0e9" // This is the function selector found in your input data
 
       await kit.asMember.weth.approve(router, amount)
       await expect(
