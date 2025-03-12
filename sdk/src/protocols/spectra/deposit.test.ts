@@ -37,13 +37,14 @@ describe("spectra", () => {
        * (address ibt, uint256 assets, address recipient)
        */
       // uint256 constant DEPOSIT_ASSET_IN_IBT = 0x04;
+      const assets = BigInt("0x8000000000000000000000000000000000000000000000000000000000000000")
 
       const decoded = ethers.AbiCoder.defaultAbiCoder().encode(
         //for command 0x04
         ["address", "uint256", "address"],
         [
           "0xd89fc47aacbb31e2bf23ec599f593a4876d8c18c",
-          "0x8000000000000000000000000000000000000000000000000000000000000000",
+          assets,
           wallets.avatar,//0xe0
         ]
       )
@@ -76,12 +77,12 @@ describe("spectra", () => {
       //   */
       // Try using a different command format - either the function selector or properly encoded
       const SPECTRA_CMD = "0xe21fd0e9" // This is the function selector found in your input data
-      console.log("Command being passed:", "0x00")
+      console.log("Command being passed:", "0x04")
       console.log("Arguments being passed:", [weth, amount])
 
       await kit.asMember.weth.approve(router, amount)
       await expect(
-        kit.asMember.spectra.router["execute(bytes,bytes[])"]("0x00", [
+        kit.asMember.spectra.router["execute(bytes,bytes[])"]("0x04", [
           weth,
           amount.toString(),
         ])
