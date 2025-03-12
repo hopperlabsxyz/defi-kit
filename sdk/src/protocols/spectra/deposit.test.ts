@@ -57,7 +57,7 @@ describe("spectra", () => {
       console.log("Encoded parameters:", encodedParams1)
 
       // Approve tokens first (required for most operations)
-      // await kit.asMember.weth.approve(router, amount)
+      await kit.asMember.weth.approve(router, value)
 
       await expect(
         kit.asMember.spectra.router["execute(bytes,bytes[])"]("0x00", [
