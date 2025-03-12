@@ -1,3 +1,3 @@
-import ethPools from ./_ethPools
+// import ethPools from ./_ethPools
 
-export type EthPool = (typeof ethPools)[number]
+// export type EthPool = (typeof ethPools)[number]

@@ -5,6 +5,7 @@ import { eth as kit } from "../../../test/kit"
 import { parseEther, toBeHex } from "ethers"
 import { Chain, contracts } from "../../../src"
 import { getProvider } from "../../../test/provider"
+import { c } from "zodiac-roles-sdk/."
 
 const weth = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
 const input1 =
@@ -31,6 +32,8 @@ describe("spectra", () => {
       //   */
       // Try using a different command format - either the function selector or properly encoded
       const SPECTRA_CMD = "0xe21fd0e9" // This is the function selector found in your input data
+      console.log("Command being passed:", "0x00")
+      console.log("Arguments being passed:", [weth, amount])
 
       await kit.asMember.weth.approve(router, amount)
       await expect(
