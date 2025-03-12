@@ -2,7 +2,7 @@ import { eth } from "."
 import { wallets } from "../../../test/wallets"
 import { applyPermissions, stealErc20 } from "../../../test/helpers"
 import { eth as kit } from "../../../test/kit"
-import { parseEther, toBeHex } from "ethers"
+import { AbiCoder, ethers, parseEther, toBeHex } from "ethers"
 import { Chain, contracts } from "../../../src"
 import { getProvider } from "../../../test/provider"
 import { c } from "zodiac-roles-sdk/."
@@ -19,7 +19,27 @@ describe("spectra", () => {
 
     it("deposit", async () => {
       const provider = getProvider(Chain.eth)
-      const amount = toBeHex(parseEther("10"))
+      const amount = BigInt(toBeHex(parseEther("10")))
+      const tokenAddress = weth
+
+      const command1 = "0x00" // TRANSFER_FROM
+      const command2 = "0x02" // TRANSFER (this might represent another command)
+
+      const input1 = ethers.AbiCoder.defaultAbiCoder().encode(
+        ["address", "uint256"],
+        [tokenAddress, amount.toString()]
+      )
+      // const input2 = ethers.utils.defaultAbiCoder.encode(
+      //   ["address", "address", "uint256"],
+      //   [recipientAddress, tokenAddress, value]
+      // )
+
+      const commands = [command1, command2]
+      const inputs = [input1, input1]
+
+      // Combine commands into a single execute call
+      // await router.execute(commands, inputs)
+
       const router = contracts.mainnet.spectra.router
       await provider.send("anvil_setBalance", [
         wallets.avatar,
@@ -39,7 +59,7 @@ describe("spectra", () => {
       await expect(
         kit.asMember.spectra.router["execute(bytes,bytes[])"]("0x00", [
           weth,
-          amount,
+          amount.toString(),
         ])
       ).not.toRevert()
     })
