@@ -14,9 +14,9 @@ export const eth = {
     console.log("Expected: in the permission: ", encoded())
     return [
       allow.mainnet.spectra.router["execute(bytes,bytes[])"](
-        // c.abiEncodedMatches(["0x00"], ["bytes1"]), //command
+        c.abiEncodedMatches(["0x00"], ["bytes1"]), //command
         // encoded,
-        undefined, //command
+        // undefined, //command
         undefined //inputs
       ),
     ]
