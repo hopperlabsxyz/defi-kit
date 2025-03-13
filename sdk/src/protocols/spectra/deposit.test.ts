@@ -57,7 +57,16 @@ describe("spectra", () => {
       console.log("Encoded parameters:", encodedParams1)
 
       // Approve tokens first (required for most operations)
-      await kit.asMember.weth.approve(router, value)
+      // await kit.asMember.weth.approve(router, value)
+
+
+
+      // // Execute the deposit command with proper encoded parameters
+      await expect(
+        kit.asMember.spectra.router["execute(bytes,bytes[])"]("0x04", [
+          encodedParams1,
+        ])
+      ).not.toRevert()
 
       await expect(
         kit.asMember.spectra.router["execute(bytes,bytes[])"]("0x00", [
@@ -65,12 +74,6 @@ describe("spectra", () => {
         ])
       ).not.toRevert()
 
-      // // Execute the deposit command with proper encoded parameters
-      // await expect(
-      //   kit.asMember.spectra.router["execute(bytes,bytes[])"]("0x04", [
-      //     encodedParams1,
-      //   ])
-      // ).not.toRevert()
     })
   })
 })
