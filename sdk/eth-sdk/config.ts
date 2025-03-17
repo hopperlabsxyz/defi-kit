@@ -141,7 +141,7 @@ export const contracts = {
       stakingRewards: "0x0650CAF159C5A49f711e8169D4336ECB9b950275",
     },
     spectra: {
-      router: "0x8a697ae2f8897CB3C47eEb390cFf24BEFA703dfc",
+      router: "0xD733e545C65d539f588d7c3793147B497403F0d2",
     },
     stader: {
       stakingPoolManager: "0xcf5EA1b38380f6aF39068375516Daf40Ed70D299",
