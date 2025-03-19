@@ -15,6 +15,7 @@ const TRANSFER_FROM = "00" // (address token, uint256 value)
 const DEPOSIT_ASSET_IN_IBT = "04" //(address ibt, uint256 assets, address recipient)
 const DEPOSIT_IBT_IN_PT = "06" //(address pt, uint256 ibts, address ptRecipient, address ytRecipient, uint256 minShares)
 const CURVE_ADD_LIQUIDITY = "0c" //(address pool, uint256[] amounts, uint256 min_mint_amount, address recipient)
+const pool = "0xe119bad8a35b999f65b1e5fd48c626c327daa16b" // Vyper_contract => proxy (just a normal pool name ???)
 
 const DEPOSIT_COMMAND = `0x${TRANSFER_FROM}${DEPOSIT_ASSET_IN_IBT}${DEPOSIT_IBT_IN_PT}${CURVE_ADD_LIQUIDITY}`
 
@@ -36,10 +37,10 @@ export const eth = {
         ...allow.mainnet.spectra.router["execute(bytes,bytes[])"](
           c.abiEncodedMatches([DEPOSIT_COMMAND], ["bytes4"]), // _commands
           c.matches([
-            // TRANSFER_FROM = "00" 
+            // TRANSFER_FROM = "00"
             // Transfer the underlying tokens from the depositor's wallet to the Router
             c.abiEncodedMatches(
-              [depositToken, undefined],
+              [depositToken, undefined], //underlyint token, amount
               ["address", "uint256"]
             ),
 
@@ -47,29 +48,28 @@ export const eth = {
             // Deposit all underlying tokens in the specified ERC4626 IBT contract to receive IBT shares
             c.abiEncodedMatches(
               //(address ibt, uint256 assets, address recipient)
-              [ibt, undefined, undefined], //address_this not ok
+              [ibt, undefined, undefined], //ibt, assets, recipient
               ["address", "uint256", "address"]
-              // 1:✅ //    ✅    //  1:recipent
+              // ✅ //    ✅    //  1:recipent
             ),
 
             // DEPOSIT_IBT_IN_PT = "06"
-            // 
             c.abiEncodedMatches(
               //(address pt, uint256 ibts, address ptRecipient, address ytRecipient, uint256 minShares)
               [undefined, undefined, undefined, undefined, undefined],
               ["address", "uint256", "address", "address", "uint256"]
-              // 1:pt  //  ✅ // 1:ptRecipent //1:ytRecipent //  ✅
+              // 1:pt  // ✅ // 1:ptRecipent //1:ytRecipent //  ✅
             ),
 
             // CURVE_ADD_LIQUIDITY = "0c"
             // Add IBT and PT liquidity to the Curve Pool. Send the Curve LP token to the user.
             c.abiEncodedMatches(
               //(address pool, uint256[] amounts, uint256 min_mint_amount, address recipient)
-              [undefined, undefined, undefined, undefined], //address pool,
+              [pool, undefined, undefined, undefined], //address pool,
               ["address", "uint256[]", "uint256", "address"]
               // 1:pool //   ✅   //   ✅    // 1: recipient
             ),
-          ]) // _inputs
+          ])// TODO: recipent + ptRecipient + ytRecipient (= avatar?) + pt + pool
         ),
       }
     )

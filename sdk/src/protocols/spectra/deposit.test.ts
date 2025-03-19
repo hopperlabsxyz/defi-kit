@@ -18,7 +18,7 @@ describe("spectra", () => {
     it("deposit", async () => {
       const amount = BigInt(toBeHex(parseEther("1")))
 
-      await stealErc20(Chain.eth, WSTETH, amount * 2n, STEAL_ADDRESS)
+      await stealErc20(Chain.eth, WSTETH, amount * 3n, STEAL_ADDRESS)
       
       // Check balance
       const balance = await kit.asMember.wsteth.balanceOf(STEAL_ADDRESS)
@@ -31,14 +31,13 @@ describe("spectra", () => {
       //0x0000000000000000000000007f39c581f595b53c5cb19bd0b3f8da6c935e2ca0
 
       //all the address es:
-      const token = "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0" //wsteth underlying_token
+      const underlying_token = "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0" //wsteth underlying_token
       const ibt = "0xd89fc47aacbb31e2bf23ec599f593a4876d8c18c" // interest bearing token : Proxy for SpectraWrappedILRT -> [spectra Wrapped ILRT]
       const recipient = "0x8e53d04644e9ab0412a8c6bd228c84da7664cfe3" //GnosisSafeProxy = ytRecipient
-      const pt = "0x4ae0154f83427a5864e5de6513a47dac9e5d5a69" //principal token
+      const pt = "0x4ae0154f83427a5864e5de6513a47dac9e5d5a69" //principal token -> the future yeild token version
       const ptRecipient = "0x0000000000000000000000000000000000000000e0" // ??
       const ytRecipient = "0x8e53d04644e9ab0412a8c6bd228c84da7664cfe3" // GnosisSafeProxy = recipient (Yield Token (YT))
       const pool = "0xe119bad8a35b999f65b1e5fd48c626c327daa16b" // Vyper_contract => proxy (just a normal pool name ???)
-
 
       const commands = "0x0004060c"
       const inputs = [
