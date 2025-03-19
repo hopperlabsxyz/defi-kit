@@ -24,7 +24,7 @@ export const eth = {
     // console.log("Expected: in the permission: ", encoded())
     const permissions: Permission[] = []
 
-    const ibt = "0xd89fc47aacbb31e2bf23ec599f593a4876d8c18c"
+    const ibt = "0xd89fc47aacbb31e2bf23ec599f593a4876d8c18c"//ibt = Interest bearing token -> proxy for SpectraWrappedILRT
     const depositToken = "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0"//wsteth
     const ADDRESS_THIS = "0x00000000000000000000000000000000000000e0"
     const CONTRACT_BALANCE =
@@ -41,7 +41,7 @@ export const eth = {
           ),
           // DEPOSIT_ASSET_IN_IBT = "04" //(address ibt, uint256 assets, address recipient)
           c.abiEncodedMatches(
-            [ibt, undefined, undefined],
+            [ibt, undefined, undefined],//address_this not ok
             ["address", "uint256", "address"]
           ),
           // DEPOSIT_IBT_IN_PT = "06" //(address pt, uint256 ibts, address ptRecipient, address ytRecipient, uint256 minShares)
@@ -51,7 +51,7 @@ export const eth = {
           ),
           // CURVE_ADD_LIQUIDITY = "0c" //(address pool, uint256[] amounts, uint256 min_mint_amount, address recipient)
           c.abiEncodedMatches(
-            [undefined, undefined, undefined, undefined],
+            [undefined, undefined, undefined, undefined],//address pool, 
             ["address", "uint256[]", "uint256", "address"]
           ),
         ]) // _inputs
