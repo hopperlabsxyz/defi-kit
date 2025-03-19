@@ -6,6 +6,7 @@ import { allow } from "zodiac-roles-sdk/kit"
 import { c, Permission } from "zodiac-roles-sdk"
 import { contracts } from "../../../eth-sdk/config"
 import { allowErc20Approve } from "../../conditions"
+import { wallets } from "../../../test/wallets"
 
 const WSTETH = contracts.mainnet.lido.wstEth as `0x${string}`
 export const ROUTER = "0xD733e545C65d539f588d7c3793147B497403F0d2"
@@ -32,9 +33,6 @@ export const eth = {
     permissions.push(...allowErc20Approve([WSTETH], [ROUTER]), {
       ...allow.mainnet.spectra.router["execute(bytes,bytes[])"](
         c.abiEncodedMatches([DEPOSIT_COMMAND], ["bytes4"]), // _commands
-        // undefined,
-
-        // undefined,
         c.matches([
           // TRANSFER_FROM = "00" // (address token, uint256 value)
           c.abiEncodedMatches(
@@ -47,15 +45,20 @@ export const eth = {
             ["address", "uint256", "address"]
           ),
           // DEPOSIT_IBT_IN_PT = "06" //(address pt, uint256 ibts, address ptRecipient, address ytRecipient, uint256 minShares)
-          undefined,
+          c.abiEncodedMatches(
+            [undefined, undefined, undefined, undefined, undefined],
+            ["address", "uint256", "address", "address", "uint256"]
+          ),
           // CURVE_ADD_LIQUIDITY = "0c" //(address pool, uint256[] amounts, uint256 min_mint_amount, address recipient)
-          undefined,
+          c.abiEncodedMatches(
+            [undefined, undefined, undefined, undefined],
+            ["address", "uint256[]", "uint256", "address"]
+          ),
         ]) // _inputs
       ),
       
     })
     console.log("permissions: ", permissions)
-
     console.log("commands: ", DEPOSIT_COMMAND)
 
     return permissions
