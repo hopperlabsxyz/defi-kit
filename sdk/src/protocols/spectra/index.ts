@@ -8,8 +8,8 @@ import { contracts } from "../../../eth-sdk/config"
 import { allowErc20Approve } from "../../conditions"
 import { wallets } from "../../../test/wallets"
 
-const WSTETH = contracts.mainnet.lido.wstEth as `0x${string}`
-export const ROUTER = "0xD733e545C65d539f588d7c3793147B497403F0d2"
+// const WSTETH = contracts.mainnet.lido.wstEth as `0x${string}`
+// export const ROUTER = "0xD733e545C65d539f588d7c3793147B497403F0d2"
 
 const TRANSFER_FROM = "00" // (address token, uint256 value)
 const DEPOSIT_ASSET_IN_IBT = "04" //(address ibt, uint256 assets, address recipient)
@@ -24,40 +24,48 @@ export const eth = {
     // console.log("Expected: in the permission: ", encoded())
     const permissions: Permission[] = []
 
-    const ibt = "0xd89fc47aacbb31e2bf23ec599f593a4876d8c18c"//ibt = Interest bearing token -> proxy for SpectraWrappedILRT
-    const depositToken = "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0"//wsteth
+    const ibt = "0xd89fc47aacbb31e2bf23ec599f593a4876d8c18c" //ibt = Interest bearing token -> proxy for SpectraWrappedILRT
+    const depositToken = "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0" //wsteth
     const ADDRESS_THIS = "0x00000000000000000000000000000000000000e0"
     const CONTRACT_BALANCE =
       "0x8000000000000000000000000000000000000000000000000000000000000000"
 
-    permissions.push(...allowErc20Approve([WSTETH], [ROUTER]), {
-      ...allow.mainnet.spectra.router["execute(bytes,bytes[])"](
-        c.abiEncodedMatches([DEPOSIT_COMMAND], ["bytes4"]), // _commands
-        c.matches([
-          // TRANSFER_FROM = "00" // (address token, uint256 value)
-          c.abiEncodedMatches(
-            [depositToken, undefined],
-            ["address", "uint256"]
-          ),
-          // DEPOSIT_ASSET_IN_IBT = "04" //(address ibt, uint256 assets, address recipient)
-          c.abiEncodedMatches(
-            [ibt, undefined, undefined],//address_this not ok
-            ["address", "uint256", "address"]
-          ),
-          // DEPOSIT_IBT_IN_PT = "06" //(address pt, uint256 ibts, address ptRecipient, address ytRecipient, uint256 minShares)
-          c.abiEncodedMatches(
-            [undefined, undefined, undefined, undefined, undefined],
-            ["address", "uint256", "address", "address", "uint256"]
-          ),
-          // CURVE_ADD_LIQUIDITY = "0c" //(address pool, uint256[] amounts, uint256 min_mint_amount, address recipient)
-          c.abiEncodedMatches(
-            [undefined, undefined, undefined, undefined],//address pool, 
-            ["address", "uint256[]", "uint256", "address"]
-          ),
-        ]) // _inputs
-      ),
-      
-    })
+    permissions.push(
+      ...allowErc20Approve([depositToken], [contracts.mainnet.spectra.router]),
+      {
+        ...allow.mainnet.spectra.router["execute(bytes,bytes[])"](
+          c.abiEncodedMatches([DEPOSIT_COMMAND], ["bytes4"]), // _commands
+          c.matches([
+            // TRANSFER_FROM = "00" // (address token, uint256 value)
+            c.abiEncodedMatches(
+              [depositToken, undefined],
+              ["address", "uint256"]
+            ),
+            // DEPOSIT_ASSET_IN_IBT = "04"
+            c.abiEncodedMatches(
+              //(address ibt, uint256 assets, address recipient)
+              [ibt, undefined, undefined], //address_this not ok
+              ["address", "uint256", "address"]
+              //  1:✅ //    ✅    //  1:recipent
+            ),
+            // DEPOSIT_IBT_IN_PT = "06"
+            c.abiEncodedMatches(
+              //(address pt, uint256 ibts, address ptRecipient, address ytRecipient, uint256 minShares)
+              [undefined, undefined, undefined, undefined, undefined],
+              ["address", "uint256", "address", "address", "uint256"]
+              // 1:pt    //        //1: ptRecipent //1:ytRecipent // 0
+            ),
+            // CURVE_ADD_LIQUIDITY = "0c"
+            c.abiEncodedMatches(
+              //(address pool, uint256[] amounts, uint256 min_mint_amount, address recipient)
+              [undefined, undefined, undefined, undefined], //address pool,
+              ["address", "uint256[]", "uint256", "address"]
+              // 1: pool //         //         // 1: recipient
+            ),
+          ]) // _inputs
+        ),
+      }
+    )
     console.log("permissions: ", permissions)
     console.log("commands: ", DEPOSIT_COMMAND)
 
