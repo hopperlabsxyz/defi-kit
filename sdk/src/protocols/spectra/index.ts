@@ -36,31 +36,38 @@ export const eth = {
         ...allow.mainnet.spectra.router["execute(bytes,bytes[])"](
           c.abiEncodedMatches([DEPOSIT_COMMAND], ["bytes4"]), // _commands
           c.matches([
-            // TRANSFER_FROM = "00" // (address token, uint256 value)
+            // TRANSFER_FROM = "00" 
+            // Transfer the underlying tokens from the depositor's wallet to the Router
             c.abiEncodedMatches(
               [depositToken, undefined],
               ["address", "uint256"]
             ),
+
             // DEPOSIT_ASSET_IN_IBT = "04"
+            // Deposit all underlying tokens in the specified ERC4626 IBT contract to receive IBT shares
             c.abiEncodedMatches(
               //(address ibt, uint256 assets, address recipient)
               [ibt, undefined, undefined], //address_this not ok
               ["address", "uint256", "address"]
-              //  1:✅ //    ✅    //  1:recipent
+              // 1:✅ //    ✅    //  1:recipent
             ),
+
             // DEPOSIT_IBT_IN_PT = "06"
+            // 
             c.abiEncodedMatches(
               //(address pt, uint256 ibts, address ptRecipient, address ytRecipient, uint256 minShares)
               [undefined, undefined, undefined, undefined, undefined],
               ["address", "uint256", "address", "address", "uint256"]
-              // 1:pt    //        //1: ptRecipent //1:ytRecipent // 0
+              // 1:pt  //  ✅ // 1:ptRecipent //1:ytRecipent //  ✅
             ),
+
             // CURVE_ADD_LIQUIDITY = "0c"
+            // Add IBT and PT liquidity to the Curve Pool. Send the Curve LP token to the user.
             c.abiEncodedMatches(
               //(address pool, uint256[] amounts, uint256 min_mint_amount, address recipient)
               [undefined, undefined, undefined, undefined], //address pool,
               ["address", "uint256[]", "uint256", "address"]
-              // 1: pool //         //         // 1: recipient
+              // 1:pool //   ✅   //   ✅    // 1: recipient
             ),
           ]) // _inputs
         ),
