@@ -32,22 +32,32 @@ export const eth = {
     permissions.push(...allowErc20Approve([WSTETH], [ROUTER]), {
       ...allow.mainnet.spectra.router["execute(bytes,bytes[])"](
         c.abiEncodedMatches([DEPOSIT_COMMAND], ["bytes4"]), // _commands
+        // undefined,
+
+        // undefined,
         c.matches([
+          // TRANSFER_FROM = "00" // (address token, uint256 value)
+          c.abiEncodedMatches(
+            [depositToken, undefined],
+            ["address", "uint256"]
+          ),
+          // DEPOSIT_ASSET_IN_IBT = "04" //(address ibt, uint256 assets, address recipient)
+          c.abiEncodedMatches(
+            [ibt, undefined, undefined],
+            ["address", "uint256", "address"]
+          ),
+          // DEPOSIT_IBT_IN_PT = "06" //(address pt, uint256 ibts, address ptRecipient, address ytRecipient, uint256 minShares)
           undefined,
-          // c.abiEncodedMatches(
-          //   [depositToken, undefined],
-          //   ["address", "uint256"]
-          // ),
-          undefined,
-          // c.abiEncodedMatches(
-          //   [ibt, undefined, undefined],
-          //   ["address", "uint256", "address"]
-          // ),
-          undefined,
+          // CURVE_ADD_LIQUIDITY = "0c" //(address pool, uint256[] amounts, uint256 min_mint_amount, address recipient)
           undefined,
         ]) // _inputs
       ),
+      
     })
+    console.log("permissions: ", permissions)
+
+    console.log("commands: ", DEPOSIT_COMMAND)
+
     return permissions
   },
 }
